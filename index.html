@@ -81,6 +81,20 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem)
 .bfill{height:100%;border-radius:7px;transition:width .5s}
 .brow b{font-family:var(--display)}
 .brow span{font:500 .85rem var(--mono);text-align:right}
+.ana h2{font-family:var(--display);font-size:1.3rem;margin:0 0 4px}
+.ana h3{font-family:var(--display);font-size:1.05rem;margin:16px 0 6px;color:var(--accent)}
+.ana .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.ana .box{background:var(--accent-soft);border-radius:10px;padding:10px 12px;min-width:0}
+.ana .box span{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.ana .box b{font:500 1.05rem var(--mono);overflow-wrap:anywhere}
+.ana .note{font-size:.92rem;color:var(--muted);margin:6px 0 0}
+.stab{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:520px}
+.stab th,.stab td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}
+.stab th{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.stab td.n{font-family:var(--mono);text-align:right}
+.stab tr.tot td{font-weight:700;border-bottom:2px solid var(--accent)}
+.zef{margin-top:10px;font:500 1.15rem var(--mono);background:var(--accent-soft);border-radius:10px;padding:10px 14px}
+.tw{overflow-x:auto}
 .foot{font-size:.8rem;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.bfill{transition:none}}
 </style>
@@ -121,7 +135,9 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem)
 
   <section class="panel reason" id="reason"></section>
 
-  <p class="foot">Z<sub>ef</sub> calculada con las reglas de Slater para el electrón más externo. Datos de referencia: radio covalente (pm), 1.ª energía de ionización (kJ/mol), electronegatividad de Pauling y afinidad electrónica (energía liberada, kJ/mol). Son valores tabulados redondeados; pueden variar ligeramente según la fuente. Elementos Z = 1 a 36.</p>
+  <section class="panel ana" id="analysis"></section>
+
+  <p class="foot">Z<sub>ef</sub> aproximada como Z − electrones de las capas internas. Datos de referencia: radio covalente (pm), 1.ª energía de ionización (kJ/mol), electronegatividad de Pauling y afinidad electrónica (energía liberada, kJ/mol). Son valores tabulados redondeados; pueden variar ligeramente según la fuente. Elementos Z = 1 a 36.</p>
 </div>
 
 <script>
@@ -147,19 +163,10 @@ function config(Z){
   return occ;
 }
 function nmax(occ){return Math.max(...Object.keys(occ).map(o=>+o[0]))}
-function slater(Z){
-  const occ=config(Z),n=nmax(occ);
-  let S=0;
-  for(const[o,cnt]of Object.entries(occ)){
-    const on=+o[0],l=o[1];
-    if(on===n&&l!=="d"){S+=(cnt)*(n===1?0.30:0.35)}
-    else if(on===n-1){S+=cnt*0.85}
-    else if(on<n-1){S+=cnt*1}
-    else if(on===n&&l==="d"){S+=cnt*0.35}
-  }
-  // quitar el propio electrón (se ha contado en su grupo)
-  S-= (n===1?0.30:0.35);
-  return {n,zef:+(Z-S).toFixed(2),occ};
+function zefInfo(Z){ // aproximación de clase: Zef ≈ Z − electrones de las capas internas
+  const occ=config(Z),n=nmax(occ);let inner=0;
+  for(const[o,c]of Object.entries(occ)){if(+o[0]<n)inner+=c}
+  return {n,zef:Z-inner,inner,occ};
 }
 const SUP={"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"};
 const sup=k=>String(k).split("").map(c=>SUP[c]).join("");
@@ -227,9 +234,9 @@ function atomSVG(e,info,col){
   <text x="130" y="252" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="var(--body)">Capa externa: n = ${n}</text>
   </svg>`;
 }
-function fmt(v,p){if(v==null)return"—";if(p==="ea"&&v===0)return"≈ 0";return p==="en"?v.toFixed(2):v}
+function fmt(v,p){if(v==null)return"—";if(p==="ea"&&v===0)return"≈ 0";return p==="en"?v.toFixed(2).replace('.',','):v}
 function card(id,Z,who,col){
-  const e=E[Z-1],info=slater(Z);
+  const e=E[Z-1],info=zefInfo(Z);
   const v=P[prop].get(e);
   document.getElementById(id).innerHTML=`
   <div class="chead"><span class="sym">${e.s}</span><span class="nm">${e.name}</span><span class="who">${who}</span></div>
@@ -237,37 +244,42 @@ function card(id,Z,who,col){
   ${atomSVG(e,info,col)}
   <div class="facts">
     <div class="fact"><span>Nivel n</span><b>${info.n}</b></div>
-    <div class="fact"><span>Z<sub>ef</sub></span><b>${info.zef.toFixed(2)}</b></div>
+    <div class="fact"><span>Z<sub>ef</sub></span><b>${info.zef}</b></div>
     <div class="fact"><span>${P[prop].name}</span><b>${revealed?fmt(v,prop):"?"}</b></div>
   </div>`;
 }
 function predict(a,b){ // devuelve Z del elemento con mayor valor predicho y razonamiento
-  const ia=slater(a),ib=slater(b),ea=E[a-1],eb=E[b-1];
+  const ia=zefInfo(a),ib=zefInfo(b),ea=E[a-1],eb=E[b-1];
   const bigRadius=(p)=>p==="r";
   let steps=[],winner,factor;
   if(ia.n!==ib.n){
     const hiN=ia.n>ib.n?a:b,loN=hiN===a?b:a;
     factor="n";
-    steps.push(`<b>Compara n.</b> ${E[hiN-1].s} tiene su electrón externo en n = ${slater(hiN).n} y ${E[loN-1].s} en n = ${slater(loN).n}. Ese electrón de ${E[hiN-1].s} está en una capa más alejada del núcleo.`);
+    steps.push(`<b>Compara n.</b> ${E[hiN-1].s} tiene su electrón externo en n = ${zefInfo(hiN).n} y ${E[loN-1].s} en n = ${zefInfo(loN).n}. Ese electrón de ${E[hiN-1].s} está en una capa más alejada del núcleo.`);
     if(prop==="r"){winner=hiN;steps.push(`Más capas → <b>mayor radio</b> para ${E[hiN-1].s}.`)}
     else{winner=loN;steps.push(`Un electrón más lejano está menos atraído → ${E[hiN-1].s} lo cede con más facilidad y atrae menos electrones ajenos. Predicción: <b>${P[prop].name} mayor en ${E[loN-1].s}</b>.`)}
   }else{
     factor="zef";
+    if(ia.zef===ib.zef){
+      steps.push(`<b>Compara n.</b> Ambos tienen el electrón externo en n = ${ia.n}.`);
+      steps.push(`<b>Compara Z<sub>ef</sub>.</b> Los dos tienen Z<sub>ef</sub> ≈ ${ia.zef}: los electrones nuevos entran en la subcapa interna ${ia.n-1}d, que cuenta como capa interna. Con esta aproximación <b>no se puede predecir</b> cuál es mayor.`);
+      return{winner:null,steps,factor:"zef"};
+    }
     const hiZ=ia.zef>=ib.zef?a:b,loZ=hiZ===a?b:a;
     steps.push(`<b>Compara n.</b> Ambos tienen el electrón externo en n = ${ia.n}: la distancia de capa es la misma, decide la Z<sub>ef</sub>.`);
-    steps.push(`<b>Compara Z<sub>ef</sub>.</b> ${E[hiZ-1].s}: ${slater(hiZ).zef.toFixed(2)} frente a ${E[loZ-1].s}: ${slater(loZ).zef.toFixed(2)}. El núcleo de ${E[hiZ-1].s} atrae con más fuerza a sus electrones externos.`);
+    steps.push(`<b>Compara Z<sub>ef</sub>.</b> ${E[hiZ-1].s}: ${zefInfo(hiZ).zef} frente a ${E[loZ-1].s}: ${zefInfo(loZ).zef}. El núcleo de ${E[hiZ-1].s} atrae con más fuerza a sus electrones externos.`);
     if(prop==="r"){winner=loZ;steps.push(`Más atracción → nube más contraída → <b>mayor radio en ${E[loZ-1].s}</b>.`)}
     else{winner=hiZ;steps.push(`Más atracción → cuesta más arrancar un electrón y se atraen más los ajenos. Predicción: <b>${P[prop].name} mayor en ${E[hiZ-1].s}</b>.`)}
   }
   return{winner,steps,factor};
 }
 function explainMismatch(a,b,pr,realW){
-  const ea=E[a-1],eb=E[b-1],ia=slater(a),ib=slater(b);
+  const ea=E[a-1],eb=E[b-1],ia=zefInfo(a),ib=zefInfo(b);
   const other=realW===a?b:a,W=E[realW-1],O=E[other-1];
   if(pr==="en"&&(ea.en==null||eb.en==null))return"";
   if(pr==="ie"&&ia.n===ib.n){
     const lw=lastSub(realW),lo=lastSub(other);
-    if(lw.p===0&&lw.s===2&&lo.p===1)return`<b>Anomalía s² / p¹.</b> ${O.s} pierde su único electrón p, que es más energético y está más apantallado que los electrones ${slater(realW).n}s de ${W.s}. Por eso ${O.s} se ioniza con menos energía aunque su Z<sub>ef</sub> sea mayor.`;
+    if(lw.p===0&&lw.s===2&&lo.p===1)return`<b>Anomalía s² / p¹.</b> ${O.s} pierde su único electrón p, que es más energético y está más apantallado que los electrones ${zefInfo(realW).n}s de ${W.s}. Por eso ${O.s} se ioniza con menos energía aunque su Z<sub>ef</sub> sea mayor.`;
     if(lw.p===3&&lo.p===4)return`<b>Anomalía p³ / p⁴.</b> ${W.s} tiene la subcapa p semillena (un electrón en cada orbital), configuración especialmente estable. En ${O.s} el electrón que se arranca está apareado y la repulsión entre los dos electrones del mismo orbital facilita arrancarlo.`;
   }
   if(pr==="ea"){
@@ -276,14 +288,63 @@ function explainMismatch(a,b,pr,realW){
     if(zero.length)return`<b>${zero.join(" y ")}: afinidad ≈ 0 o positiva.</b> El electrón entrante tendría que ir a una subcapa nueva y más energética (subcapa llena: gases nobles, grupo 2, grupo 12) o romper una subcapa p semillena estable (N). No se libera energía apreciable.`;
   }
   if(block(a)==="d"&&block(b)==="d")return`<b>Metales de transición.</b> El electrón diferenciador entra en la subcapa interna (n−1)d, que apantalla casi por completo el aumento de carga del núcleo. La Z<sub>ef</sub> sobre los electrones 4s apenas cambia, así que la tendencia es muy suave y aparecen irregularidades pequeñas.`;
-  if(ia.n!==ib.n)return`<b>n y Z<sub>ef</sub> cambian a la vez.</b> ${W.s} está en una capa más alejada, pero su Z<sub>ef</sub> (${slater(realW).zef.toFixed(2)}) es bastante mayor que la de ${O.s} (${slater(other).zef.toFixed(2)}). Aquí pesa más el aumento de carga nuclear efectiva que la distancia. Las reglas de tendencia funcionan bien dentro de un grupo o de un periodo; en diagonal hay que tener cuidado.`;
+  if(ia.n!==ib.n)return`<b>n y Z<sub>ef</sub> cambian a la vez.</b> ${W.s} está en una capa más alejada, pero su Z<sub>ef</sub> (${zefInfo(realW).zef}) es bastante mayor que la de ${O.s} (${zefInfo(other).zef}). Aquí pesa más el aumento de carga nuclear efectiva que la distancia. Las reglas de tendencia funcionan bien dentro de un grupo o de un periodo; en diagonal hay que tener cuidado.`;
   return`<b>Diferencia pequeña.</b> Los valores son muy parecidos y las reglas sencillas no bastan para decidir; influyen detalles de la estructura electrónica.`;
+}
+
+const GNAME={1:"Grupo 1 · Metales alcalinos",2:"Grupo 2 · Metales alcalinotérreos",13:"Grupo 13 · Térreos (grupo del boro)",14:"Grupo 14 · Carbonoideos",15:"Grupo 15 · Nitrogenoideos",16:"Grupo 16 · Calcógenos o anfígenos",17:"Grupo 17 · Halógenos",18:"Grupo 18 · Gases nobles"};
+function groupName(Z){const g=group(Z);if(Z===1)return"Grupo 1 · el H no es un metal alcalino (no metal)";if(g>=3&&g<=12)return"Grupo "+g+" · Metales de transición";return GNAME[g]}
+function fullCfg(Z){const occ=config(Z);return["1s","2s","2p","3s","3p","4s","3d","4p"].filter(o=>occ[o]).map(o=>o+sup(occ[o])).join(" ")}
+let anaWho="A";
+function analysis(){
+  const Z=anaWho==="A"?A:B,e=E[Z-1],occ=config(Z),n=nmax(occ),g=group(Z),bl=block(Z);
+  const ns=occ[n+"s"]||0,np=occ[n+"p"]||0,nd=occ[(n-1)+"d"]||0;
+  let rule;
+  if(Z===2)rule="He: 1s² tiene 2 e⁻ de valencia como el grupo 2, pero se coloca en el grupo 18 porque su capa está completa (gas noble).";
+  else if(bl==="s")rule=`Bloque s → grupo = nº de e⁻ en ${n}s = <b>${ns}</b>`;
+  else if(bl==="p")rule=`Bloque p → grupo = 12 + nº de e⁻ en ${n}p = 12 + ${np} = <b>${g}</b>`;
+  else rule=`Bloque d → grupo = e⁻ en ${n}s + e⁻ en ${n-1}d = ${ns} + ${nd} = <b>${g}</b>`;
+  const exc=(Z===24||Z===29)?`<p class="note"><b>Excepción:</b> por el orden de Moeller saldría ${Z===24?"3d⁴ 4s²":"3d⁹ 4s²"}, pero es más estable ${Z===24?"3d⁵ 4s¹ (subcapa d semillena)":"3d¹⁰ 4s¹ (subcapa d llena)"}.</p>`:"";
+  const shells={};for(const[o,c]of Object.entries(occ)){shells[o[0]]=(shells[o[0]]||0)+c}
+  const inner=Object.entries(shells).filter(([k])=>+k<n).reduce((a,[,c])=>a+c,0);
+  document.getElementById("analysis").innerHTML=`
+  <div class="chead"><h2>Análisis paso a paso: ${e.name} (${e.s}, Z = ${Z})</h2></div>
+  <div class="bar" style="margin:6px 0 4px"><span class="lbl">Analizar</span>
+    <button class="chip" id="anaA" aria-pressed="${anaWho==="A"}">A · ${E[A-1].s}</button>
+    <button class="chip" id="anaB" aria-pressed="${anaWho==="B"}">B · ${E[B-1].s}</button></div>
+
+  <h3>1. Configuración electrónica</h3>
+  <div class="row">
+    <div class="box"><span>Completa (orden de Moeller)</span><b>${fullCfg(Z)}</b></div>
+    <div class="box"><span>Abreviada (kernel)</span><b>${cfgText(Z)}</b></div>
+    <div class="box"><span>Capa de valencia</span><b>${n}s${sup(ns)}${np?" "+n+"p"+sup(np):""}${bl==="d"?" (+ "+(n-1)+"d"+sup(nd)+")":""}</b></div>
+  </div>${exc}
+  <p class="note">El kernel es la configuración del gas noble anterior, entre corchetes; detrás se escriben solo los electrones que hay por encima de él.</p>
+
+  <h3>2. Posición en la tabla periódica</h3>
+  <div class="row">
+    <div class="box"><span>Periodo</span><b>${period(Z)}</b></div>
+    <div class="box"><span>Bloque</span><b>${bl}</b></div>
+    <div class="box"><span>Grupo</span><b>${g}</b></div>
+    <div class="box"><span>Nombre del grupo</span><b style="font-family:var(--body);font-weight:600">${groupName(Z)}</b></div>
+  </div>
+  <p class="note">Periodo = nivel n más alto ocupado (n = ${n}). Bloque = tipo de orbital del electrón diferenciador. ${rule}</p>
+
+  <h3>3. Carga nuclear efectiva</h3>
+  <p class="note">El electrón más externo (capa n = ${n}) no siente toda la carga del núcleo: los electrones de las capas internas lo <b>apantallan</b>.</p>
+  <div class="tw"><table class="stab"><thead><tr><th>Capa</th><th style="text-align:right">Electrones</th><th>Tipo</th></tr></thead><tbody>
+  ${Object.keys(shells).sort().map(k=>`<tr><td>n = ${k}</td><td class="n">${shells[k]}</td><td>${+k<n?"interna (apantalla)":"de valencia"}</td></tr>`).join("")}
+  </tbody></table></div>
+  <div class="zef">Z<sub>ef</sub> ≈ Z − electrones internos = ${Z} − ${inner} = <b>${Z-inner}</b></div>
+  <p class="note">Es una aproximación: los electrones de la misma capa también apantallan un poco, así que la Z<sub>ef</sub> real es algo menor. Sirve para comparar tendencias.${bl==="d"?" En los metales de transición los electrones (n−1)d cuentan como internos, por eso todos salen con Z<sub>ef</sub> ≈ 2 o 1.":""}</p>`;
+  document.getElementById("anaA").onclick=()=>{anaWho="A";analysis()};
+  document.getElementById("anaB").onclick=()=>{anaWho="B";analysis()};
 }
 function render(){
   document.querySelectorAll("[data-p]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.p===prop));
   document.querySelectorAll("[data-s]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s===slot));
   drawTable();
-  card("cardA",A,"A","--accent");card("cardB",B,"B","--warm");
+  card("cardA",A,"A","--accent");card("cardB",B,"B","--warm");analysis();
   const ea=E[A-1],eb=E[B-1],va=P[prop].get(ea),vb=P[prop].get(eb);
   const rs=document.getElementById("reason");
   if(prop==="en"&&(va==null||vb==null)){
@@ -306,8 +367,9 @@ function render(){
   html+=`<div class="bars">${[[ea,va,"var(--accent)"],[eb,vb,"var(--warm)"]].map(([e,v,c])=>`<div class="brow"><b>${e.s}</b><div class="btrack"><div class="bfill" style="width:${Math.max(2,(v||0)/maxv*100)}%;background:${c}"></div></div><span>${fmt(v,prop)} ${P[prop].unit}</span></div>`).join("")}</div>`;
   let realW=null;
   if(va!==vb)realW=va>vb?A:B;
-  const okPred=realW===pr.winner;
+  const okPred=realW===pr.winner;const noPred=pr.winner===null;
   if(realW===null){html+=`<div class="verdict v-warn">Los dos valores tabulados son iguales: aquí la tendencia no permite distinguirlos.</div>`}
+  else if(noPred){html+=`<div class="verdict v-warn">Según los datos, ${P[prop].name} mayor en ${E[realW-1].s}. ${explainMismatch(A,B,prop,realW)}</div>`}
   else if(okPred){html+=`<div class="verdict v-ok">✓ Los datos confirman la predicción: ${P[prop].name} mayor en ${E[realW-1].s}.</div>`}
   else{html+=`<div class="verdict v-warn">⚠ Los datos no siguen la tendencia: ${P[prop].name} mayor en ${E[realW-1].s}. ${explainMismatch(A,B,prop,realW)}</div>`}
   if(guess!==null&&realW!==null){html+=`<p class="hint" style="margin-top:10px">Tu predicción: <b>${E[guess-1].s}</b> — ${guess===realW?"acertada.":"no coincide con los datos. Repasa el paso que decide: "+(pr.factor==="n"?"el nivel n.":"la Z<sub>ef</sub>.")}</p>`}

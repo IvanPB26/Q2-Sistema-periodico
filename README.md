@@ -18,11 +18,12 @@ El alumno elige una propiedad y dos elementos, **predice** cuál tiene el valor 
 
 **Cómo razona**
 1. Compara el nivel *n* del electrón más externo.
-2. Si *n* es igual, compara la carga nuclear efectiva Z_ef (reglas de Slater).
+2. Si *n* es igual, compara la carga nuclear efectiva, aproximada como Z_ef ≈ Z − electrones internos.
 
 **Incluye**
 - Tabla periódica clicable (Z = 1–36) con mapa de color por propiedad
 - Ficha de cada elemento: configuración electrónica, periodo, grupo, bloque, *n* y Z_ef, con modelo de capas
+- **Análisis paso a paso** de cada elemento: configuración completa (Moeller) y abreviada (kernel), capa de valencia, periodo, bloque, grupo y nombre del grupo con la regla aplicada, y cálculo de Z_ef ≈ Z − electrones internos, capa a capa
 - Modo predicción antes de ver los datos y parejas al azar del mismo grupo o periodo
 - Explicación de las anomalías: Be/B y N/O (energía de ionización), F/Cl y afinidades ≈ 0, metales de transición
 
