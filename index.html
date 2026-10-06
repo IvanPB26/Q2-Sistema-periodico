@@ -137,7 +137,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem)
 
   <section class="panel ana" id="analysis"></section>
 
-  <p class="foot">Z<sub>ef</sub> aproximada como Z − electrones de las capas internas. Datos de referencia: radio covalente (pm), 1.ª energía de ionización (kJ/mol), electronegatividad de Pauling y afinidad electrónica (energía liberada, kJ/mol). Son valores tabulados redondeados; pueden variar ligeramente según la fuente. Elementos Z = 1 a 36.</p>
+  <p class="foot">Z<sub>ef</sub> aproximada como Z − electrones de las capas internas. Datos de referencia: radio covalente (pm), 1.ª energía de ionización (kJ/mol), electronegatividad de Pauling y afinidad electrónica (energía liberada, kJ/mol). Son valores tabulados redondeados; pueden variar ligeramente según la fuente. Tabla sin lantánidos ni actínidos. En algunos elementos pesados no se muestra la afinidad electrónica porque no hay un valor fiable.</p>
 </div>
 
 <script>
@@ -145,8 +145,14 @@ const E=[ // Z, símbolo, nombre, radio cov pm, I1 kJ/mol, EN Pauling, energía 
 [1,"H","Hidrógeno",31,1312,2.20,73],[2,"He","Helio",28,2372,null,0],
 [3,"Li","Litio",128,520,0.98,60],[4,"Be","Berilio",96,899,1.57,0],[5,"B","Boro",84,801,2.04,27],[6,"C","Carbono",76,1086,2.55,122],[7,"N","Nitrógeno",71,1402,3.04,0],[8,"O","Oxígeno",66,1314,3.44,141],[9,"F","Flúor",57,1681,3.98,328],[10,"Ne","Neón",58,2081,null,0],
 [11,"Na","Sodio",166,496,0.93,53],[12,"Mg","Magnesio",141,738,1.31,0],[13,"Al","Aluminio",121,578,1.61,42],[14,"Si","Silicio",111,787,1.90,134],[15,"P","Fósforo",107,1012,2.19,72],[16,"S","Azufre",105,1000,2.58,200],[17,"Cl","Cloro",102,1251,3.16,349],[18,"Ar","Argón",106,1521,null,0],
-[19,"K","Potasio",203,419,0.82,48],[20,"Ca","Calcio",176,590,1.00,2],[21,"Sc","Escandio",170,633,1.36,18],[22,"Ti","Titanio",160,659,1.54,8],[23,"V","Vanadio",153,651,1.63,51],[24,"Cr","Cromo",139,653,1.66,65],[25,"Mn","Manganeso",139,717,1.55,0],[26,"Fe","Hierro",132,762,1.83,15],[27,"Co","Cobalto",126,760,1.88,64],[28,"Ni","Níquel",124,737,1.91,112],[29,"Cu","Cobre",132,745,1.90,119],[30,"Zn","Cinc",122,906,1.65,0],[31,"Ga","Galio",122,579,1.81,41],[32,"Ge","Germanio",120,762,2.01,119],[33,"As","Arsénico",119,947,2.18,78],[34,"Se","Selenio",120,941,2.55,195],[35,"Br","Bromo",120,1140,2.96,325],[36,"Kr","Kriptón",116,1351,null,0]
+[19,"K","Potasio",203,419,0.82,48],[20,"Ca","Calcio",176,590,1.00,2],[21,"Sc","Escandio",170,633,1.36,18],[22,"Ti","Titanio",160,659,1.54,8],[23,"V","Vanadio",153,651,1.63,51],[24,"Cr","Cromo",139,653,1.66,65],[25,"Mn","Manganeso",139,717,1.55,0],[26,"Fe","Hierro",132,762,1.83,15],[27,"Co","Cobalto",126,760,1.88,64],[28,"Ni","Níquel",124,737,1.91,112],[29,"Cu","Cobre",132,745,1.90,119],[30,"Zn","Cinc",122,906,1.65,0],[31,"Ga","Galio",122,579,1.81,41],[32,"Ge","Germanio",120,762,2.01,119],[33,"As","Arsénico",119,947,2.18,78],[34,"Se","Selenio",120,941,2.55,195],[35,"Br","Bromo",120,1140,2.96,325],[36,"Kr","Kriptón",116,1351,null,0],
+[37,"Rb","Rubidio",220,403,0.82,47],[38,"Sr","Estroncio",195,549,0.95,5],[39,"Y","Itrio",190,600,1.22,30],[40,"Zr","Circonio",175,640,1.33,41],[41,"Nb","Niobio",164,652,1.60,86],[42,"Mo","Molibdeno",154,684,2.16,72],[43,"Tc","Tecnecio",147,702,1.90,null],[44,"Ru","Rutenio",146,710,2.20,101],[45,"Rh","Rodio",142,720,2.28,110],[46,"Pd","Paladio",139,804,2.20,54],[47,"Ag","Plata",145,731,1.93,126],[48,"Cd","Cadmio",144,868,1.69,0],[49,"In","Indio",142,558,1.78,37],[50,"Sn","Estaño",139,709,1.96,107],[51,"Sb","Antimonio",139,834,2.05,101],[52,"Te","Teluro",138,869,2.10,190],[53,"I","Yodo",139,1008,2.66,295],[54,"Xe","Xenón",140,1170,null,0],
+[55,"Cs","Cesio",244,376,0.79,46],[56,"Ba","Bario",215,503,0.89,14],[57,"La","Lantano",207,538,1.10,54],[72,"Hf","Hafnio",175,659,1.30,null],[73,"Ta","Tantalio",170,761,1.50,31],[74,"W","Wolframio",162,770,2.36,79],[75,"Re","Renio",151,760,1.90,null],[76,"Os","Osmio",144,840,2.20,104],[77,"Ir","Iridio",141,880,2.20,151],[78,"Pt","Platino",136,870,2.28,205],[79,"Au","Oro",136,890,2.54,223],[80,"Hg","Mercurio",132,1007,2.00,0],[81,"Tl","Talio",145,589,1.62,31],[82,"Pb","Plomo",146,716,2.33,35],[83,"Bi","Bismuto",148,703,2.02,91],[84,"Po","Polonio",140,812,2.00,null],[85,"At","Astato",150,899,2.20,null],[86,"Rn","Radón",150,1037,null,0],
+[87,"Fr","Francio",260,393,0.70,null],[88,"Ra","Radio",221,509,0.90,null],[89,"Ac","Actinio",215,499,1.10,null],
+[104,"Rf","Rutherfordio",null,null,null,null],[105,"Db","Dubnio",null,null,null,null],[106,"Sg","Seaborgio",null,null,null,null],[107,"Bh","Bohrio",null,null,null,null],[108,"Hs","Hasio",null,null,null,null],[109,"Mt","Meitnerio",null,null,null,null],[110,"Ds","Darmstatio",null,null,null,null],[111,"Rg","Roentgenio",null,null,null,null],[112,"Cn","Copernicio",null,null,null,null],[113,"Nh","Nihonio",null,null,null,null],[114,"Fl","Flerovio",null,null,null,null],[115,"Mc","Moscovio",null,null,null,null],[116,"Lv","Livermorio",null,null,null,null],[117,"Ts","Teneso",null,null,null,null],[118,"Og","Oganesón",null,null,null,null]
 ].map(a=>({Z:a[0],s:a[1],name:a[2],r:a[3],ie:a[4],en:a[5],ea:a[6]}));
+const EZ={};E.forEach(e=>EZ[e.Z]=e);
+const nodata=Z=>Z>=104;
 const P={
  r:{name:"radio atómico",unit:"pm",get:e=>e.r,col:"--warm"},
  ie:{name:"energía de ionización",unit:"kJ/mol",get:e=>e.ie,col:"--accent"},
@@ -154,40 +160,44 @@ const P={
  ea:{name:"|afinidad electrónica|",unit:"kJ/mol",get:e=>e.ea,col:"--accent"}
 };
 // configuración electrónica
-const ORDER=[["1s",1,0,2],["2s",2,0,2],["2p",2,1,6],["3s",3,0,2],["3p",3,1,6],["4s",4,0,2],["3d",3,2,10],["4p",4,1,6]];
+const ORDER=[["1s",2],["2s",2],["2p",6],["3s",2],["3p",6],["4s",2],["3d",10],["4p",6],["5s",2],["4d",10],["5p",6],["6s",2],["4f",14],["5d",10],["6p",6],["7s",2],["5f",14],["6d",10],["7p",6]];
+const EXC={24:{"3d":5,"4s":1},29:{"3d":10,"4s":1},41:{"4d":4,"5s":1},42:{"4d":5,"5s":1},44:{"4d":7,"5s":1},45:{"4d":8,"5s":1},46:{"4d":10,"5s":0},47:{"4d":10,"5s":1},57:{"4f":0,"5d":1},78:{"5d":9,"6s":1},79:{"5d":10,"6s":1},89:{"5f":0,"6d":1}};
 function config(Z){
   let left=Z,occ={};
-  for(const[o,,,c]of ORDER){const k=Math.min(c,left);if(k>0)occ[o]=k;left-=k;}
-  if(Z===24){occ["3d"]=5;occ["4s"]=1}
-  if(Z===29){occ["3d"]=10;occ["4s"]=1}
+  for(const[o,c]of ORDER){const k=Math.min(c,left);if(k>0)occ[o]=k;left-=k;}
+  if(EXC[Z])for(const[o,c]of Object.entries(EXC[Z])){if(c)occ[o]=c;else delete occ[o]}
   return occ;
 }
 function nmax(occ){return Math.max(...Object.keys(occ).map(o=>+o[0]))}
 function zefInfo(Z){ // aproximación de clase: Zef ≈ Z − electrones de las capas internas
-  const occ=config(Z),n=nmax(occ);let inner=0;
+  const occ=config(Z),n=period(Z);let inner=0;
+  if(!occ[n+"s"]&&!occ[n+"p"])return {n,zef:null,inner:null,occ};
   for(const[o,c]of Object.entries(occ)){if(+o[0]<n)inner+=c}
   return {n,zef:Z-inner,inner,occ};
 }
 const SUP={"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"};
 const sup=k=>String(k).split("").map(c=>SUP[c]).join("");
 function cfgText(Z){
-  const occ=config(Z),cores=[[36,"Kr"],[18,"Ar"],[10,"Ne"],[2,"He"]];
-  const showOrder=["1s","2s","2p","3s","3p","3d","4s","4p"];
+  const occ=config(Z),cores=[[86,"Rn"],[54,"Xe"],[36,"Kr"],[18,"Ar"],[10,"Ne"],[2,"He"]];
+  const showOrder=["1s","2s","2p","3s","3p","3d","4s","4p","4d","4f","5s","5p","5d","5f","6s","6p","6d","7s","7p"];
   let core=null;for(const[c,s]of cores){if(Z>c){core=[c,s];break}}
   const coreSet=core?Object.keys(config(core[0])):[];
   const parts=showOrder.filter(o=>occ[o]&&!(core&&coreSet.includes(o)&&occ[o]===config(core[0])[o])).map(o=>o+sup(occ[o]));
   return (core?"["+core[1]+"] ":"")+parts.join(" ");
 }
 function block(Z){if(Z===2)return"s";const g=group(Z);return g<=2?"s":g<=12?"d":"p"}
-function period(Z){return Z<=2?1:Z<=10?2:Z<=18?3:4}
+function period(Z){return Z<=2?1:Z<=10?2:Z<=18?3:Z<=36?4:Z<=54?5:Z<=86?6:7}
 function group(Z){
   if(Z===1)return 1;if(Z===2)return 18;
-  const start={2:3,3:11,4:19}[period(Z)],i=Z-start;
-  if(period(Z)<4)return i<2?i+1:i+11;
-  return i+1;
+  const p=period(Z);
+  if(p<=3){const i=Z-{2:3,3:11}[p];return i<2?i+1:i+11}
+  if(p<=5)return Z-{4:18,5:36}[p];
+  const b=p===6?54:86;
+  if(Z<=b+3)return Z-b;           // grupos 1, 2 y 3 (La / Ac)
+  return Z-(p===6?68:100);        // Hf…Rn / Rf…Og
 }
 function lastSub(Z){ // subcapa del electrón diferenciador del más externo (para anomalías)
-  const occ=config(Z),n=nmax(occ);return {p:occ[n+"p"]||0,s:occ[n+"s"]||0};
+  const occ=config(Z),n=period(Z);return {p:occ[n+"p"]||0,s:occ[n+"s"]||0};
 }
 let prop="ie",A=7,B=8,slot="B",revealed=false,guess=null;
 
@@ -201,7 +211,7 @@ function drawTable(){
   pt.innerHTML="";
   const heat=document.getElementById("heat").checked;
   const vals=E.map(P[prop].get).filter(v=>v!=null),min=Math.min(...vals),max=Math.max(...vals);
-  for(let per=1;per<=4;per++)for(let g=1;g<=18;g++){
+  for(let per=1;per<=7;per++)for(let g=1;g<=18;g++){
     const e=E.find(x=>period(x.Z)===per&&group(x.Z)===g);
     if(!e){const d=document.createElement("div");pt.appendChild(d);continue}
     const b=document.createElement("button");b.className="cell";b.id="c"+e.Z;
@@ -209,7 +219,7 @@ function drawTable(){
     const v=P[prop].get(e);
     b.style.background=heat?heatColor(v,min,max):`var(--${block(e.Z)==="s"?"warm-soft":block(e.Z)==="p"?"accent-soft":"none"})`;
     if(heat){const t=v==null?0:(v-min)/(max-min);if(t>.55)b.style.color="var(--bg)"}
-    b.innerHTML=`<small>${e.Z}</small>${e.s}`;
+    b.innerHTML=`<small>${e.Z}</small>${e.s}`;if(nodata(e.Z)){b.style.opacity=".5";b.title="Elemento superpesado: sin datos experimentales"}
     if(e.Z===A){b.classList.add("selA");b.insertAdjacentHTML("beforeend",'<span class="tag tagA">A</span>')}
     if(e.Z===B){b.classList.add("selB");b.insertAdjacentHTML("beforeend",'<span class="tag tagB">B</span>')}
     b.onclick=()=>{if(slot==="A"){if(e.Z===B)B=A;A=e.Z;slot="B"}else{if(e.Z===A)A=B;B=e.Z;slot="A"}revealed=false;guess=null;render()};
@@ -217,7 +227,7 @@ function drawTable(){
   }
 }
 function atomSVG(e,info,col){
-  const n=info.n,R=40+e.r*0.42; // radio exterior dibujado proporcional al radio real
+  const n=info.n,R=e.r==null?90:30+e.r*0.36; // radio exterior dibujado proporcional al radio real
   const occ=info.occ;let rings="";
   for(let k=1;k<=n;k++){
     const rr=18+(R-18)*k/n,outer=k===n;
@@ -236,7 +246,7 @@ function atomSVG(e,info,col){
 }
 function fmt(v,p){if(v==null)return"—";if(p==="ea"&&v===0)return"≈ 0";return p==="en"?v.toFixed(2).replace('.',','):v}
 function card(id,Z,who,col){
-  const e=E[Z-1],info=zefInfo(Z);
+  const e=EZ[Z],info=zefInfo(Z);
   const v=P[prop].get(e);
   document.getElementById(id).innerHTML=`
   <div class="chead"><span class="sym">${e.s}</span><span class="nm">${e.name}</span><span class="who">${who}</span></div>
@@ -249,17 +259,22 @@ function card(id,Z,who,col){
   </div>`;
 }
 function predict(a,b){ // devuelve Z del elemento con mayor valor predicho y razonamiento
-  const ia=zefInfo(a),ib=zefInfo(b),ea=E[a-1],eb=E[b-1];
+  const ia=zefInfo(a),ib=zefInfo(b),ea=EZ[a],eb=EZ[b];
   const bigRadius=(p)=>p==="r";
   let steps=[],winner,factor;
   if(ia.n!==ib.n){
     const hiN=ia.n>ib.n?a:b,loN=hiN===a?b:a;
     factor="n";
-    steps.push(`<b>Compara n.</b> ${E[hiN-1].s} tiene su electrón externo en n = ${zefInfo(hiN).n} y ${E[loN-1].s} en n = ${zefInfo(loN).n}. Ese electrón de ${E[hiN-1].s} está en una capa más alejada del núcleo.`);
-    if(prop==="r"){winner=hiN;steps.push(`Más capas → <b>mayor radio</b> para ${E[hiN-1].s}.`)}
-    else{winner=loN;steps.push(`Un electrón más lejano está menos atraído → ${E[hiN-1].s} lo cede con más facilidad y atrae menos electrones ajenos. Predicción: <b>${P[prop].name} mayor en ${E[loN-1].s}</b>.`)}
+    steps.push(`<b>Compara n.</b> ${EZ[hiN].s} tiene su electrón externo en n = ${zefInfo(hiN).n} y ${EZ[loN].s} en n = ${zefInfo(loN).n}. Ese electrón de ${EZ[hiN].s} está en una capa más alejada del núcleo.`);
+    if(prop==="r"){winner=hiN;steps.push(`Más capas → <b>mayor radio</b> para ${EZ[hiN].s}.`)}
+    else{winner=loN;steps.push(`Un electrón más lejano está menos atraído → ${EZ[hiN].s} lo cede con más facilidad y atrae menos electrones ajenos. Predicción: <b>${P[prop].name} mayor en ${EZ[loN].s}</b>.`)}
   }else{
     factor="zef";
+    if(ia.zef==null||ib.zef==null){
+      steps.push(`<b>Compara n.</b> Ambos tienen el electrón externo en n = ${ia.n}.`);
+      steps.push(`<b>Z<sub>ef</sub>:</b> el paladio no tiene electrones en la capa n = 5, así que la aproximación no permite comparar.`);
+      return{winner:null,steps,factor:"zef"};
+    }
     if(ia.zef===ib.zef){
       steps.push(`<b>Compara n.</b> Ambos tienen el electrón externo en n = ${ia.n}.`);
       steps.push(`<b>Compara Z<sub>ef</sub>.</b> Los dos tienen Z<sub>ef</sub> ≈ ${ia.zef}: los electrones nuevos entran en la subcapa interna ${ia.n-1}d, que cuenta como capa interna. Con esta aproximación <b>no se puede predecir</b> cuál es mayor.`);
@@ -267,15 +282,15 @@ function predict(a,b){ // devuelve Z del elemento con mayor valor predicho y raz
     }
     const hiZ=ia.zef>=ib.zef?a:b,loZ=hiZ===a?b:a;
     steps.push(`<b>Compara n.</b> Ambos tienen el electrón externo en n = ${ia.n}: la distancia de capa es la misma, decide la Z<sub>ef</sub>.`);
-    steps.push(`<b>Compara Z<sub>ef</sub>.</b> ${E[hiZ-1].s}: ${zefInfo(hiZ).zef} frente a ${E[loZ-1].s}: ${zefInfo(loZ).zef}. El núcleo de ${E[hiZ-1].s} atrae con más fuerza a sus electrones externos.`);
-    if(prop==="r"){winner=loZ;steps.push(`Más atracción → nube más contraída → <b>mayor radio en ${E[loZ-1].s}</b>.`)}
-    else{winner=hiZ;steps.push(`Más atracción → cuesta más arrancar un electrón y se atraen más los ajenos. Predicción: <b>${P[prop].name} mayor en ${E[hiZ-1].s}</b>.`)}
+    steps.push(`<b>Compara Z<sub>ef</sub>.</b> ${EZ[hiZ].s}: ${zefInfo(hiZ).zef} frente a ${EZ[loZ].s}: ${zefInfo(loZ).zef}. El núcleo de ${EZ[hiZ].s} atrae con más fuerza a sus electrones externos.`);
+    if(prop==="r"){winner=loZ;steps.push(`Más atracción → nube más contraída → <b>mayor radio en ${EZ[loZ].s}</b>.`)}
+    else{winner=hiZ;steps.push(`Más atracción → cuesta más arrancar un electrón y se atraen más los ajenos. Predicción: <b>${P[prop].name} mayor en ${EZ[hiZ].s}</b>.`)}
   }
   return{winner,steps,factor};
 }
 function explainMismatch(a,b,pr,realW){
-  const ea=E[a-1],eb=E[b-1],ia=zefInfo(a),ib=zefInfo(b);
-  const other=realW===a?b:a,W=E[realW-1],O=E[other-1];
+  const ea=EZ[a],eb=EZ[b],ia=zefInfo(a),ib=zefInfo(b);
+  const other=realW===a?b:a,W=EZ[realW],O=EZ[other];
   if(pr==="en"&&(ea.en==null||eb.en==null))return"";
   if(pr==="ie"&&ia.n===ib.n){
     const lw=lastSub(realW),lo=lastSub(other);
@@ -283,10 +298,11 @@ function explainMismatch(a,b,pr,realW){
     if(lw.p===3&&lo.p===4)return`<b>Anomalía p³ / p⁴.</b> ${W.s} tiene la subcapa p semillena (un electrón en cada orbital), configuración especialmente estable. En ${O.s} el electrón que se arranca está apareado y la repulsión entre los dos electrones del mismo orbital facilita arrancarlo.`;
   }
   if(pr==="ea"){
-    const zero=[a,b].filter(z=>E[z-1].ea===0).map(z=>E[z-1].s);
+    const zero=[a,b].filter(z=>EZ[z].ea===0).map(z=>EZ[z].s);
     if((a===9&&b===17)||(a===17&&b===9))return`<b>Excepción F / Cl.</b> El flúor es tan pequeño que el electrón que llega sufre una fuerte repulsión de los 7 electrones de valencia, muy juntos en n = 2. El cloro, más grande, reparte mejor esa repulsión y libera más energía.`;
     if(zero.length)return`<b>${zero.join(" y ")}: afinidad ≈ 0 o positiva.</b> El electrón entrante tendría que ir a una subcapa nueva y más energética (subcapa llena: gases nobles, grupo 2, grupo 12) o romper una subcapa p semillena estable (N). No se libera energía apreciable.`;
   }
+  if(block(a)==="d"&&block(b)==="d"&&ia.n!==ib.n&&(period(a)===6||period(b)===6))return`<b>Contracción lantánida.</b> Entre el La y el Hf se llenan los 14 orbitales 4f, que apantallan muy mal. La carga nuclear que sienten los electrones externos del periodo 6 es mayor de lo esperado, el átomo se contrae y sus propiedades se parecen mucho a las del elemento de encima (Zr ≈ Hf, Ag/Au…).`;
   if(block(a)==="d"&&block(b)==="d")return`<b>Metales de transición.</b> El electrón diferenciador entra en la subcapa interna (n−1)d, que apantalla casi por completo el aumento de carga del núcleo. La Z<sub>ef</sub> sobre los electrones 4s apenas cambia, así que la tendencia es muy suave y aparecen irregularidades pequeñas.`;
   if(ia.n!==ib.n)return`<b>n y Z<sub>ef</sub> cambian a la vez.</b> ${W.s} está en una capa más alejada, pero su Z<sub>ef</sub> (${zefInfo(realW).zef}) es bastante mayor que la de ${O.s} (${zefInfo(other).zef}). Aquí pesa más el aumento de carga nuclear efectiva que la distancia. Las reglas de tendencia funcionan bien dentro de un grupo o de un periodo; en diagonal hay que tener cuidado.`;
   return`<b>Diferencia pequeña.</b> Los valores son muy parecidos y las reglas sencillas no bastan para decidir; influyen detalles de la estructura electrónica.`;
@@ -294,10 +310,10 @@ function explainMismatch(a,b,pr,realW){
 
 const GNAME={1:"Grupo 1 · Metales alcalinos",2:"Grupo 2 · Metales alcalinotérreos",13:"Grupo 13 · Térreos (grupo del boro)",14:"Grupo 14 · Carbonoideos",15:"Grupo 15 · Nitrogenoideos",16:"Grupo 16 · Calcógenos o anfígenos",17:"Grupo 17 · Halógenos",18:"Grupo 18 · Gases nobles"};
 function groupName(Z){const g=group(Z);if(Z===1)return"Grupo 1 · el H no es un metal alcalino (no metal)";if(g>=3&&g<=12)return"Grupo "+g+" · Metales de transición";return GNAME[g]}
-function fullCfg(Z){const occ=config(Z);return["1s","2s","2p","3s","3p","4s","3d","4p"].filter(o=>occ[o]).map(o=>o+sup(occ[o])).join(" ")}
+function fullCfg(Z){const occ=config(Z);return ORDER.map(o=>o[0]).filter(o=>occ[o]).map(o=>o+sup(occ[o])).join(" ")}
 let anaWho="A";
 function analysis(){
-  const Z=anaWho==="A"?A:B,e=E[Z-1],occ=config(Z),n=nmax(occ),g=group(Z),bl=block(Z);
+  const Z=anaWho==="A"?A:B,e=EZ[Z],occ=config(Z),n=period(Z),g=group(Z),bl=block(Z);
   const ns=occ[n+"s"]||0,np=occ[n+"p"]||0,nd=occ[(n-1)+"d"]||0;
   let rule;
   if(Z===2)rule="He: 1s² tiene 2 e⁻ de valencia como el grupo 2, pero se coloca en el grupo 18 porque su capa está completa (gas noble).";
@@ -310,15 +326,15 @@ function analysis(){
   document.getElementById("analysis").innerHTML=`
   <div class="chead"><h2>Análisis paso a paso: ${e.name} (${e.s}, Z = ${Z})</h2></div>
   <div class="bar" style="margin:6px 0 4px"><span class="lbl">Analizar</span>
-    <button class="chip" id="anaA" aria-pressed="${anaWho==="A"}">A · ${E[A-1].s}</button>
-    <button class="chip" id="anaB" aria-pressed="${anaWho==="B"}">B · ${E[B-1].s}</button></div>
+    <button class="chip" id="anaA" aria-pressed="${anaWho==="A"}">A · ${EZ[A].s}</button>
+    <button class="chip" id="anaB" aria-pressed="${anaWho==="B"}">B · ${EZ[B].s}</button></div>
 
   <h3>1. Configuración electrónica</h3>
   <div class="row">
     <div class="box"><span>Completa (orden de Moeller)</span><b>${fullCfg(Z)}</b></div>
     <div class="box"><span>Abreviada (kernel)</span><b>${cfgText(Z)}</b></div>
     <div class="box"><span>Capa de valencia</span><b>${n}s${sup(ns)}${np?" "+n+"p"+sup(np):""}${bl==="d"?" (+ "+(n-1)+"d"+sup(nd)+")":""}</b></div>
-  </div>${exc}
+  </div>${exc}${Z>=104?'<p class="note"><b>Configuración predicha</b> teóricamente: de estos elementos superpesados solo se han obtenido unos pocos átomos.</p>':''}
   <p class="note">El kernel es la configuración del gas noble anterior, entre corchetes; detrás se escriben solo los electrones que hay por encima de él.</p>
 
   <h3>2. Posición en la tabla periódica</h3>
@@ -335,8 +351,8 @@ function analysis(){
   <div class="tw"><table class="stab"><thead><tr><th>Capa</th><th style="text-align:right">Electrones</th><th>Tipo</th></tr></thead><tbody>
   ${Object.keys(shells).sort().map(k=>`<tr><td>n = ${k}</td><td class="n">${shells[k]}</td><td>${+k<n?"interna (apantalla)":"de valencia"}</td></tr>`).join("")}
   </tbody></table></div>
-  <div class="zef">Z<sub>ef</sub> ≈ Z − electrones internos = ${Z} − ${inner} = <b>${Z-inner}</b></div>
-  <p class="note">Es una aproximación: los electrones de la misma capa también apantallan un poco, así que la Z<sub>ef</sub> real es algo menor. Sirve para comparar tendencias.${bl==="d"?" En los metales de transición los electrones (n−1)d cuentan como internos, por eso todos salen con Z<sub>ef</sub> ≈ 2 o 1.":""}</p>`;
+  ${(ns+np)?`<div class="zef">Z<sub>ef</sub> ≈ Z − electrones internos = ${Z} − ${inner} = <b>${Z-inner}</b></div>`:`<div class="zef">El paladio no tiene electrones en la capa n = 5 ([Kr] 4d¹⁰): esta aproximación no se puede aplicar.</div>`}
+  <p class="note">Es una aproximación: los electrones de la misma capa también apantallan un poco, así que la Z<sub>ef</sub> real es algo menor. Sirve para comparar tendencias.${bl==="d"?" En los metales de transición los electrones (n−1)d cuentan como internos, por eso casi todos salen con Z<sub>ef</sub> ≈ 2 (≈ 1 cuando hay un solo electrón ns).":""}</p>`;
   document.getElementById("anaA").onclick=()=>{anaWho="A";analysis()};
   document.getElementById("anaB").onclick=()=>{anaWho="B";analysis()};
 }
@@ -345,8 +361,12 @@ function render(){
   document.querySelectorAll("[data-s]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s===slot));
   drawTable();
   card("cardA",A,"A","--accent");card("cardB",B,"B","--warm");analysis();
-  const ea=E[A-1],eb=E[B-1],va=P[prop].get(ea),vb=P[prop].get(eb);
+  const ea=EZ[A],eb=EZ[B],va=P[prop].get(ea),vb=P[prop].get(eb);
   const rs=document.getElementById("reason");
+  if((va==null||vb==null)&&!(prop==="en"&&[ea,eb].some(e=>e.en==null&&group(e.Z)===18&&!nodata(e.Z)))){
+    const sin=[ea,eb].filter(e=>P[prop].get(e)==null);
+    rs.innerHTML=`<h2>Sin dato fiable</h2><p>${sin.map(e=>e.name).join(" y ")}: ${sin.some(e=>nodata(e.Z))?"elemento sintético superpesado, del que solo se han obtenido unos pocos átomos de vida muy corta; no hay medidas de sus propiedades.":"no hay un valor medido fiable de esta propiedad (las fuentes dan estimaciones muy distintas)."} Elige otro elemento.</p>`;return;
+  }
   if(prop==="en"&&(va==null||vb==null)){
     rs.innerHTML=`<h2>Sin dato de electronegatividad</h2><p>${[ea,eb].filter(e=>e.en==null).map(e=>e.name).join(" y ")} es un gas noble: la escala de Pauling se basa en energías de enlace y los gases nobles prácticamente no forman enlaces, por eso no se les asigna valor. Elige otro elemento.</p>`;return;
   }
@@ -368,11 +388,11 @@ function render(){
   let realW=null;
   if(va!==vb)realW=va>vb?A:B;
   const okPred=realW===pr.winner;const noPred=pr.winner===null;
-  if(realW===null){html+=`<div class="verdict v-warn">Los dos valores tabulados son iguales: aquí la tendencia no permite distinguirlos.</div>`}
-  else if(noPred){html+=`<div class="verdict v-warn">Según los datos, ${P[prop].name} mayor en ${E[realW-1].s}. ${explainMismatch(A,B,prop,realW)}</div>`}
-  else if(okPred){html+=`<div class="verdict v-ok">✓ Los datos confirman la predicción: ${P[prop].name} mayor en ${E[realW-1].s}.</div>`}
-  else{html+=`<div class="verdict v-warn">⚠ Los datos no siguen la tendencia: ${P[prop].name} mayor en ${E[realW-1].s}. ${explainMismatch(A,B,prop,realW)}</div>`}
-  if(guess!==null&&realW!==null){html+=`<p class="hint" style="margin-top:10px">Tu predicción: <b>${E[guess-1].s}</b> — ${guess===realW?"acertada.":"no coincide con los datos. Repasa el paso que decide: "+(pr.factor==="n"?"el nivel n.":"la Z<sub>ef</sub>.")}</p>`}
+  if(realW===null){html+=`<div class="verdict v-warn">Los dos valores tabulados son iguales: aquí la tendencia no permite distinguirlos.${block(A)==="d"&&block(B)==="d"&&(period(A)===6||period(B)===6)&&period(A)!==period(B)?" <b>Contracción lantánida:</b> los 14 electrones 4f que hay antes del Hf apantallan muy mal, así que el periodo 6 no crece como cabría esperar y Zr y Hf (o Mo y W, Ag y Au…) tienen casi el mismo tamaño.":""}</div>`}
+  else if(noPred){html+=`<div class="verdict v-warn">Según los datos, ${P[prop].name} mayor en ${EZ[realW].s}. ${explainMismatch(A,B,prop,realW)}</div>`}
+  else if(okPred){html+=`<div class="verdict v-ok">✓ Los datos confirman la predicción: ${P[prop].name} mayor en ${EZ[realW].s}.</div>`}
+  else{html+=`<div class="verdict v-warn">⚠ Los datos no siguen la tendencia: ${P[prop].name} mayor en ${EZ[realW].s}. ${explainMismatch(A,B,prop,realW)}</div>`}
+  if(guess!==null&&realW!==null){html+=`<p class="hint" style="margin-top:10px">Tu predicción: <b>${EZ[guess].s}</b> — ${guess===realW?"acertada.":"no coincide con los datos. Repasa el paso que decide: "+(pr.factor==="n"?"el nivel n.":"la Z<sub>ef</sub>.")}</p>`}
   html+=`<div class="predict"><button class="btn ghost" id="again">Probar otra pareja al azar</button></div>`;
   rs.innerHTML=html;
   document.getElementById("again").onclick=randomPair;

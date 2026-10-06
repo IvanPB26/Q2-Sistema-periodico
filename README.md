@@ -21,11 +21,11 @@ El alumno elige una propiedad y dos elementos, **predice** cuál tiene el valor 
 2. Si *n* es igual, compara la carga nuclear efectiva, aproximada como Z_ef ≈ Z − electrones internos.
 
 **Incluye**
-- Tabla periódica clicable (Z = 1–36) con mapa de color por propiedad
+- Tabla periódica completa clicable (periodos 1–7, sin lantánidos ni actínidos) con mapa de color por propiedad; los superpesados (Z ≥ 104) aparecen atenuados por no tener datos
 - Ficha de cada elemento: configuración electrónica, periodo, grupo, bloque, *n* y Z_ef, con modelo de capas
 - **Análisis paso a paso** de cada elemento: configuración completa (Moeller) y abreviada (kernel), capa de valencia, periodo, bloque, grupo y nombre del grupo con la regla aplicada, y cálculo de Z_ef ≈ Z − electrones internos, capa a capa
 - Modo predicción antes de ver los datos y parejas al azar del mismo grupo o periodo
-- Explicación de las anomalías: Be/B y N/O (energía de ionización), F/Cl y afinidades ≈ 0, metales de transición
+- Explicación de las anomalías: Be/B y N/O (energía de ionización), F/Cl y afinidades ≈ 0, metales de transición y contracción lantánida
 
 **Nota:** los datos son valores tabulados redondeados; pueden variar ligeramente según la fuente.
 
